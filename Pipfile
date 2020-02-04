@@ -8,6 +8,12 @@ verify_ssl = true
 [packages]
 flask = "*"
 beautifulsoup4 = "*"
+flask-wtf = "*"
+flask-sqlalchemy = "*"
+requests = "*"
+Flask = "*"
+flask-bcrypt = "*"
+flask-login = "*"
 
 [requires]
 python_version = "3.7"

@@ -1,11 +1,14 @@
 from bs4 import BeautifulSoup
-
+import requests
+import json
 
 def get_html(url):
+
+    r = requests.get(url)
+    return r.content
     """
     Retrieve the HTML from the website at `url`.
     """
-    return None  # TODO: Implement this function
 
 def get_clubs_html():
     """
@@ -36,14 +39,18 @@ def get_elements_with_class(soup, elt, cls):
     Important to know that each element in the list is itself a soup which can be
     queried with the BeautifulSoup API. It's turtles all the way down!
     """ 
-    return soup.findAll(elt, {'class': cls})
+    return soup.find_all(elt, {'class': cls})
 
 def get_clubs(soup):
+
+    elts = get_elements_with_class(soup, 'div', 'box')
+    elts2 = [item for item in elts if item is not None]
+
     """
     This function should return a list of soups which each correspond to the html
     for a single club.
     """
-    return [] # TODO: Implement this function
+    return elts2
 
 def get_club_name(club):
     """
@@ -54,17 +61,37 @@ def get_club_name(club):
     elts = get_elements_with_class(club, 'strong', 'club-name')
     if len(elts) < 1:
         return ''
-    return elts[0].text
+    return elts[0].get_text().strip()
 
 def get_club_description(club):
+
+    elt = club.find('em')
+    if elt is None: 
+        return ''
+    return elt.get_text().strip()
     """
     Extract club description from a soup of 
-    """
-    return '' # TODO: Implement this function
+    """ 
 
 def get_club_tags(club):
-    """
-    Get the tag labels for all tags associated with a single club.
-    """
-    return [] # TODO: Implement this function
+    elts = get_elements_with_class(club, 'span', 'tag is-info is-rounded')
+    if len(elts) < 1:
+        return []
+    else: 
+        elts = [item.text for item in elts]
+        return elts
 
+class CObj: 
+    def __init__(self, name, tags, description):
+        self.name = name
+        self.tags = tags
+        self.description = description
+
+def get_club_objects():
+    htmlInfo = get_clubs_html()
+    soup = soupify(htmlInfo)
+    elts = get_clubs(soup)
+    clubs = []
+    for i in elts: 
+        clubs.append(CObj(get_club_name(i), get_club_tags(i), get_club_description(i)))
+    return clubs

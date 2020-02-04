@@ -1,24 +1,55 @@
-# Penn Labs Server Challenge
+# Penn Labs Server Challenge - Yuchen (Tessa) Fan
 
-## Documentation
-Fill out this section as you complete the challenge!
+## Introduction
+Welcome to my project! I've followed most of the specifications in the challenge to 
+implement a  with bonus frontend (CSS Bootstrap) and database management
+(SQLAlchemy w/ SQLite). Also, I'd already written everything using render & templates 
+before I realized the specifications for the bonus oops. 
 
-## Installation
-1. Click the green "use this template" button to make your own copy of this repository, and clone it. 
-2. Change directory into the cloned repository.
-3. Install `pipenv`
-   * `brew install pipenv` if you're on a Mac with [`homebrew`](https://brew.sh/) installed.
-   * `pip install --user --upgrade pipenv` for most other machines.
-4. Install packages using `pipenv install`.
+## Pages & Data
+Home Page('/' or '/home' or '/api'): displays welcome!
 
-## Developing
-1. Use `pipenv run index.py` to run the project.
-2. Follow the instructions [here](https://www.notion.so/pennlabs/Server-Challenge-Spring-20-5a14bc18fb2f44ba90a61ba86b6fc426).
-3. Document your work in this `README.md` file.
+REST API: 
+Clubs_API('/api/clubs'): 'GET' -> basic implementation that displays current clubs in JSON format
+		'POST' -> creates new club w/ info specified in request body
+Favorite_API('/api/favorite'): 'POST' -> allows user to favorite a club! added column in 
+		Club model to keep users that favorited it, no repeats
+User_API: 'GET' -> shows basic user info (username & email)
 
-## Submitting
-Follow the instructions at on the Technical Challenge page for submission.
+Additional pages:  
+Clubs('/clubs'): shows list of clubs, used FlaskForm to the create_club form, formatted using
+		render_template & html
+Club Info('/clubs/<clubname>'): shows specific club & form to update club's info (navigate by clicking)
+All Users('/user'): shows list of users (can navigate to specific user's page by clicking)
 
-## Installing Additional Packages
-Use any tools you think are relevant to the challenge! To install additional packages 
-run `pipenv install <package_name>` within the directory. Make sure to document your additions.
+## Documentation: 
+Created User & Club models w/ SQLAlchemy to store info for users & clubs.
+User_attr: username, email, password
+Club_attr: name, description, tags
+
+Scraping: Used Beautiful Soup, loaded info into list of CObj objects, and passed to index.py
+
+Additional feature: 
+Login/Logout/Register: 
+- Uses Bcrypt to hash user's passwords
+- Register user: uses form to get info, creates User object & stores in db
+- Uses LoginManager 
+- Will not be able to favorite, post, or update club unless loggedin
+
+## Additional Packages
+flask = "*"
+beautifulsoup4 = "*"
+flask-wtf = "*"
+flask-sqlalchemy = "*"
+requests = "*"
+Flask = "*"
+flask-bcrypt = "*"
+flask-login = "*"
+Install using 'pipenv install <name_of_package>'
+
+## Running the Project
+Call 'pipenv run python3 index.py' from the command line.
+Navigate to 'localhost:5000' to view the page & go to different pages.
+
+
+
