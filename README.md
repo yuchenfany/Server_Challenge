@@ -38,13 +38,21 @@ Login/Logout/Register:
 
 ## Additional Packages
 flask = "*"
+
 beautifulsoup4 = "*"
+
 flask-wtf = "*"
+
 flask-sqlalchemy = "*"
+
 requests = "*"
+
 Flask = "*"
+
 flask-bcrypt = "*"
+
 flask-login = "*"
+
 Install using 'pipenv install <name_of_package>'
 
 ## Running the Project
