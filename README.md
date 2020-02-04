@@ -11,6 +11,7 @@ Home Page('/' or '/home' or '/api'): displays welcome!
 
 REST API: 
 Clubs_API('/api/clubs'): 'GET' -> basic implementation that displays current clubs in JSON format
+		
 		'POST' -> creates new club w/ info specified in request body
 Favorite_API('/api/favorite'): 'POST' -> allows user to favorite a club! added column in 
 		Club model to keep users that favorited it, no repeats
