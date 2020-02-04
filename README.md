@@ -10,12 +10,17 @@ before I realized the specifications for the bonus oops.
 Home Page('/' or '/home' or '/api'): displays welcome!
 
 REST API: 
-Clubs_API('/api/clubs'): 'GET' -> basic implementation that displays current clubs in JSON format
-		
+Clubs_API('/api/clubs'): 
+
+		'GET' -> basic implementation that displays current clubs in JSON format
 		'POST' -> creates new club w/ info specified in request body
-Favorite_API('/api/favorite'): 'POST' -> allows user to favorite a club! added column in 
+Favorite_API('/api/favorite'): 
+
+		'POST' -> allows user to favorite a club! added column in 
 		Club model to keep users that favorited it, no repeats
-User_API: 'GET' -> shows basic user info (username & email)
+User_API: 
+		
+		'GET' -> shows basic user info (username & email)
 
 Additional pages:  
 Clubs('/clubs'): shows list of clubs, used FlaskForm to the create_club form, formatted using
